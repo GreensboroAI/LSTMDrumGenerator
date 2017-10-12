@@ -6,10 +6,21 @@ First posting I am doing of this is for a simple one drum example. I have visual
 
 Create a text file with the pattern of the snare drum, as 1 and 0 (hit or no hit). I have done with 16ths in mind so I have every 4 characters as a beat. So for a snare hit on the 2's it would be 0000000100000001
 
-The model will generate a new sequence for you with the length of the seq_length that you tell it. I have it set to 16 so it will produce 1 bar of snare. Current snare.tct file is just made up on the fly, not a song.
+The model will generate a new sequence for you with the length of the seq_length that you tell it. I have it set to 16 so it will produce 1 bar of snare. Current snare.txt file is just made up on the fly, not a song.
 
 # Further work
-My plan is to extend this so that it has instead of just one LSTM, it will have 8, one for each drum and cymbal in a standard kit. At first all 8 LSTM models will predict their own new sequence but as long as they are fed from text files that follow the same conventions ie. same songs in the same order with 16ths as their timing then this should work.
+To expand this further I believe it would be beneficial to develop a dictionary mapping all combinations of drums being played to numerical values. For example:
 
-Longterm it may be beneficial to try and use a merge layer to predict them in conjunction with one another as in music of course playing one drum and one cymbal often times is something that you do together for a reason. They are not always played as independant drums.
+0 : None
+1 : Hi-Hat only
+2 : Hi-Hat & Snare
+3 : Hi-Hate & Bass Drum
+
+etc.....
+
+This would allow for any combination of drums being played at once to be represented.
+
+This is a quick and dirty way to tie all the drums together in processing through one LSTM model.
+
+For the short term we could do this for a few songs manually from tabs to test the idea. In the long term if we end up liking this idea we should try and create a function to read in standard format tabs and do this task for us.
 
